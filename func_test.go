@@ -13,3 +13,18 @@ func TestAspectRatio(t *testing.T) {
 		}
 	}
 }
+
+func TestAspectFromFile(t *testing.T) {
+	expected := [2]string{"16:9", "9:16"}
+	paths := [2]string{"./samples/boots-video-horizontal.mp4", "./samples/boots-video-vertical.mp4"}
+	for i := range expected {
+		actual, err := getVideoAspectRatio(paths[i])
+		if err != nil {
+			t.Errorf("error getting video aspect ratio: %v", err)
+		} else {
+			if actual != expected[i] {
+				t.Errorf("actual, %v, different from expected, %v, aspect ratio", actual, expected[i])
+			}
+		}
+	}
+}
