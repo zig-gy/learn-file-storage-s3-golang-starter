@@ -30,5 +30,13 @@ func getVideoAspectRatio(filePath string) (string, error) {
 }
 
 func aspectRatioFromHeightWidth(height, width int) string {
-	return ""
+	// outputs: "16:9", "9:16" and "other"
+	divided := float64(width) / float64(height)
+	if divided == 16/9.0 {
+		return "16:9"
+	}
+	if divided == 9/16.0 {
+		return "9:16"
+	}
+	return "other"
 }
